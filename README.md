@@ -1,16 +1,23 @@
-# adtrace_flutter_oaid
+# AdTrace OAID Sample for Flutter
 
-A new Flutter project.
+## Steps:
+### 1. implement SDK [as usual](https://github.com/adtrace/adtrace_sdk_flutter)
+### 2. add OAID android plugin to your android native module.
+- add maven dependency for [`adtrace-android-oaid`](https://central.sonatype.com/artifact/io.adtrace/adtrace-android-oaid)
+- add `oaid_sdk` as a [local `aar`](https://github.com/adtrace/adtrace_sdk_android/tree/master/android-sdk-plugin-oaid/libs) to your project (`libs` folder in `app`) 
+### 3. call `AdTraceOaid.readOaid(context)` like below.
 
-## Getting Started
+```java
+...
+import io.adtrace.sdk.oaid.AdTraceOaid;
+import io.flutter.embedding.android.FlutterActivity;
 
-This project is a starting point for a Flutter application.
+public class MainActivity extends FlutterActivity {
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AdTraceOaid.readOaid(this);
+    }
+}
+```
